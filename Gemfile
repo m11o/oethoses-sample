@@ -72,3 +72,4 @@ group :test do
   gem 'orthoses-rails'
 end
 
+gem 'sorcery'
