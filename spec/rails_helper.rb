@@ -89,4 +89,6 @@ RSpec.configure do |config|
       run loader
     end
   end
+
+  config.include FactoryBot::Syntax::Methods
 end
