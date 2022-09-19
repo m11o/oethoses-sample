@@ -61,4 +61,32 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.around(:all) do |example|
+    loader -> {
+      example.run
+    }
+    Orthoses::Builder.new do
+      use Orthoses::CreateFileByName,
+        base_dir: Rails.root.join("sig/out"),
+        header: "# !!! GENERATED CODE !!!"
+      use Orthoses::Filter do |name, _content|
+        path, _lineno = Object.const_source_location(name)
+        return false unless path
+        %r{app/models}.match?(path)
+      end
+      use YourCustom::Middleware
+      use Orthoses::ActiveModel::HasSecurePassword
+      use Orthoses::ActiveRecord::BelongsTo
+      use Orthoses::ActiveRecord::HasMany
+      use Orthoses::ActiveRecord::HasOne
+      use Orthoses::ActiveSupport::ClassAttribute
+      use Orthoses::ActiveSupport::MattrAccessor
+      use Orthoses::Mixin
+      use Orthoses::Constant, strict: false
+      use Orthoses::ObjectSpaceAll
+      use Orthoses::Autoload
+      run loader
+    end
+  end
 end
