@@ -1,0 +1,14 @@
+module Retweet::GeneratedAssociationMethods
+  def user: () -> User?
+  def user=: (User?) -> User?
+  def reload_user: () -> User?
+  def build_user: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_user: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_user!: (?untyped attributes) ?{ (User) -> void } -> User
+  def tweet: () -> Tweet?
+  def tweet=: (Tweet?) -> Tweet?
+  def reload_tweet: () -> Tweet?
+  def build_tweet: (?untyped attributes) ?{ (Tweet) -> void } -> Tweet
+  def create_tweet: (?untyped attributes) ?{ (Tweet) -> void } -> Tweet
+  def create_tweet!: (?untyped attributes) ?{ (Tweet) -> void } -> Tweet
+end

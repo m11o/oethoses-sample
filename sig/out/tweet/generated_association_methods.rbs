@@ -1,0 +1,18 @@
+module Tweet::GeneratedAssociationMethods
+  def retweets: () -> Tweet::ActiveRecord_Associations_CollectionProxy
+  def retweets=: (Tweet::ActiveRecord_Associations_CollectionProxy | Array[Retweet]) -> (Tweet::ActiveRecord_Associations_CollectionProxy | Array[Retweet])
+  def retweet_ids: () -> Array[Integer]
+  def retweet_ids=: (Array[Integer]) -> Array[Integer]
+  def user: () -> User?
+  def user=: (User?) -> User?
+  def reload_user: () -> User?
+  def build_user: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_user: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_user!: (?untyped attributes) ?{ (User) -> void } -> User
+  def quote_tweet: () -> Tweet?
+  def quote_tweet=: (Tweet?) -> Tweet?
+  def reload_quote_tweet: () -> Tweet?
+  def build_quote_tweet: (?untyped attributes) ?{ (Tweet) -> void } -> Tweet
+  def create_quote_tweet: (?untyped attributes) ?{ (Tweet) -> void } -> Tweet
+  def create_quote_tweet!: (?untyped attributes) ?{ (Tweet) -> void } -> Tweet
+end

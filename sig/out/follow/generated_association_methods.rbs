@@ -1,0 +1,14 @@
+module Follow::GeneratedAssociationMethods
+  def follower: () -> User?
+  def follower=: (User?) -> User?
+  def reload_follower: () -> User?
+  def build_follower: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_follower: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_follower!: (?untyped attributes) ?{ (User) -> void } -> User
+  def followee: () -> User?
+  def followee=: (User?) -> User?
+  def reload_followee: () -> User?
+  def build_followee: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_followee: (?untyped attributes) ?{ (User) -> void } -> User
+  def create_followee!: (?untyped attributes) ?{ (User) -> void } -> User
+end

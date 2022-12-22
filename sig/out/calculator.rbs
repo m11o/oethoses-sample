@@ -1,0 +1,4 @@
+module Calculator
+  def plus: (untyped a, untyped b) -> untyped
+  def minus: (untyped value) -> untyped
+end

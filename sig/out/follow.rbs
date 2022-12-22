@@ -1,0 +1,5 @@
+class Follow < ::ApplicationRecord
+  include Follow::AttributeMethods::GeneratedAttributeMethods
+  include Follow::GeneratedAssociationMethods
+  private def cannot_follow_self: () -> (untyped | nil)
+end

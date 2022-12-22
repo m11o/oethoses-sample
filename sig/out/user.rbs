@@ -1,0 +1,9 @@
+class User < ::ApplicationRecord
+  include User::AttributeMethods::GeneratedAttributeMethods
+  include User::GeneratedAssociationMethods
+  def follow!: (User user) -> void
+  def unfollow!: (untyped user) -> (nil | untyped)
+  def following?: (untyped user) -> untyped
+  def followed?: (untyped user) -> untyped
+  def timeline: () -> untyped
+end

@@ -1,0 +1,18 @@
+module User::GeneratedAssociationMethods
+  def followers: () -> User::ActiveRecord_Associations_CollectionProxy
+  def followers=: (User::ActiveRecord_Associations_CollectionProxy | Array[Follow]) -> (User::ActiveRecord_Associations_CollectionProxy | Array[Follow])
+  def follower_ids: () -> Array[Integer]
+  def follower_ids=: (Array[Integer]) -> Array[Integer]
+  def followees: () -> User::ActiveRecord_Associations_CollectionProxy
+  def followees=: (User::ActiveRecord_Associations_CollectionProxy | Array[Follow]) -> (User::ActiveRecord_Associations_CollectionProxy | Array[Follow])
+  def followee_ids: () -> Array[Integer]
+  def followee_ids=: (Array[Integer]) -> Array[Integer]
+  def tweets: () -> User::ActiveRecord_Associations_CollectionProxy
+  def tweets=: (User::ActiveRecord_Associations_CollectionProxy | Array[Tweet]) -> (User::ActiveRecord_Associations_CollectionProxy | Array[Tweet])
+  def tweet_ids: () -> Array[Integer]
+  def tweet_ids=: (Array[Integer]) -> Array[Integer]
+  def retweets: () -> User::ActiveRecord_Associations_CollectionProxy
+  def retweets=: (User::ActiveRecord_Associations_CollectionProxy | Array[Retweet]) -> (User::ActiveRecord_Associations_CollectionProxy | Array[Retweet])
+  def retweet_ids: () -> Array[Integer]
+  def retweet_ids=: (Array[Integer]) -> Array[Integer]
+end

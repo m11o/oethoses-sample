@@ -1,0 +1,4 @@
+class Retweet < ::ApplicationRecord
+  include Retweet::AttributeMethods::GeneratedAttributeMethods
+  include Retweet::GeneratedAssociationMethods
+end
