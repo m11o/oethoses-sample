@@ -2,6 +2,26 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+Orthoses::Builder.new do
+  use Orthoses::CreateFileByName,
+      base_dir: Rails.root.join('sig/out')
+  use Orthoses::Filter do |name, _content|
+    !name.to_s.match?(/^Active(Record|Storage|Support)|^Action(Controller|Cable|Dispatch|Mailer|Mailbox|Text)/)
+  end
+  use Orthoses::LoadRBS, paths: Dir.glob(Rails.root.join('sig', 'out', '**', '*.rbs').to_s)
+  use Orthoses::RBSPrototypeRB,
+      paths: Dir.glob(Rails.root.join('app', 'models', '**', '*.rb').to_s)
+  use Orthoses::ActiveRecord::BelongsTo
+  use Orthoses::ActiveRecord::HasMany
+  use Orthoses::ActiveRecord::HasOne
+  use Orthoses::ActiveRecord::GeneratedAttributeMethods
+  use Orthoses::ActiveSupport::ClassAttribute
+  use Orthoses::ActiveSupport::MattrAccessor
+  use Orthoses::Constant, strict: false
+  use Orthoses::Autoload
+  run -> { Rails.application.eager_load! }
+end.call
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
@@ -61,34 +81,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
-  config.around(:all) do |example|
-    loader -> {
-      example.run
-    }
-    Orthoses::Builder.new do
-      use Orthoses::CreateFileByName,
-        base_dir: Rails.root.join("sig/out"),
-        header: "# !!! GENERATED CODE !!!"
-      use Orthoses::Filter do |name, _content|
-        path, _lineno = Object.const_source_location(name)
-        return false unless path
-        %r{app/models}.match?(path)
-      end
-      use YourCustom::Middleware
-      use Orthoses::ActiveModel::HasSecurePassword
-      use Orthoses::ActiveRecord::BelongsTo
-      use Orthoses::ActiveRecord::HasMany
-      use Orthoses::ActiveRecord::HasOne
-      use Orthoses::ActiveSupport::ClassAttribute
-      use Orthoses::ActiveSupport::MattrAccessor
-      use Orthoses::Mixin
-      use Orthoses::Constant, strict: false
-      use Orthoses::ObjectSpaceAll
-      use Orthoses::Autoload
-      run loader
-    end
-  end
 
   config.include FactoryBot::Syntax::Methods
 end

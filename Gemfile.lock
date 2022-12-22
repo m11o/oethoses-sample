@@ -187,6 +187,9 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     rbs (2.6.0)
+    rbs-dynamic (0.1.0)
+      rbs
+      thor
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -278,6 +281,7 @@ DEPENDENCIES
   orthoses-rails
   puma (~> 5.0)
   rails (~> 7.0.4)
+  rbs-dynamic
   rspec-rails
   rubocop
   rubocop-rails
